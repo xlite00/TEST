@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>TODO</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="task" id="" />
+        <button class="add">追加</button>
+        <ul class="list"></ul>
+    </div>
+    <script>
+        /**
+         * タスク作成
+         */
+        function createTask(name){
+            let obj = $("<li />");
+            let chk = $("<input type='checkbox' />");
+            let delbtn = $("<button>削除</button>").click(function(){ obj.remove(); });
+            let nm = $("<span />").text(name);
+            obj.append(chk);
+            obj.append(nm);
+            obj.append(delbtn);
+            return obj;
+        }
+
+        $(function(){
+            $(".add").click(function(){
+                let val = $("input[name='task']").val();
+                $(".list").append(createTask(val));
+                $("input[name='task']").val("");
+            });
+        });
+    </script>
+</body>
+</html>
