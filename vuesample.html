@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="newtask" v-model="newTask">
+        <button v-on:click="addTask">Add</button>
+        <ul>
+            <li v-for="task in tasks">{{task.name}}</li>
+        </ul>
+        {{$data|json}}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newTask: "",
+            tasks: []
+        },
+        methods:{
+            addTask:function(event){
+                let taskNm = this.newTask;
+                this.tasks.push({name: taskNm});
+                this.newTask = "";
+            }
+        }
+    });
+</script>
+</html>
