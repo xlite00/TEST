@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="js/todo.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <input type="text" name="newtask" v-model="newTask">
         <button v-on:click="addTask">Add</button>
         <ul>
-            <li v-for="task in tasks">{{task.name}}</li>
+            <todo-item v-for="task in tasks" v-bind:todo="task"></todo-item>
         </ul>
         {{$data|json}}
     </div>
@@ -27,7 +28,7 @@
         methods:{
             addTask:function(event){
                 let taskNm = this.newTask;
-                this.tasks.push({name: taskNm});
+                this.tasks.push({text: taskNm});
                 this.newTask = "";
             }
         }
